@@ -1,0 +1,32 @@
+@* Este é um componente Razor e pode ser utilizado em outras páginas chamando o <Imc/> *@
+
+@page "/imc" 
+@* Rota da página *@
+
+<h1>Calculadora de IMC</h1>
+
+<label for="altura">Altura(em metros)</label>
+<input @bind="Altura" id="altura" type="number"/>
+
+<label for="peso">Peso (em quilogramas)</label>
+<input @bind="Peso" id="peso" type="number"/>
+
+<button @onclick="CalculaIMC">Calcular</button>
+<label for="">O IMC é: 
+    <span>@ImcCalculado</span>
+</label>
+
+@code{
+    //Esse é o bloco lógico
+    private double Altura { get; set; }
+    private double Peso { get; set; }
+    //Para vincular as variáveis aos inputs, usamos a diretiva @bind
+
+    //Calculando o IMC
+    private double ImcCalculado { get; set; }
+
+    private void CalculaIMC(){
+        ImcCalculado=Peso/Math.Pow(Altura, 2);
+    }
+
+}
